@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
+from sys import exit
 
 def fk_Dofbot (q):
     # FWDKIN_DOFBOT Computes the end effector position and orientation relative to the base frame for Yahboom's Dofbot manipulator 
@@ -78,3 +79,27 @@ def rotz(theta):
         theta = theta[0]
     Rz = R.from_euler('z', theta, degrees = True )
     return Rz
+
+
+def validJointAngles(q):
+    for i in range(4): # range is 180 for joints 1-4
+        if q[i] < 0 or q[i] > 180:
+            return False
+        
+    if q[4] < 0 or q[4] > 270:
+        return False
+    
+    return True
+
+
+
+def testFK(q):
+
+    if not validJointAngles(q):
+        exit("invalid joint angles input")
+
+    R2,P2 = fk_Dofbot(q)
+    print('Rotation matrix (R_ {0T}) for input: ')
+    print(R2. as_matrix ())
+    print('Position vector (P_ {0T}) for input: ')
+    print(P2)
