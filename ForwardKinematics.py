@@ -93,13 +93,15 @@ def validJointAngles(q):
 
 
 
-def testFK(q):
+def runFK(q):
 
     if not validJointAngles(q):
-        exit("invalid joint angles input")
+        print("invalid joint angles input")
+        return False
 
     R2,P2 = fk_Dofbot(q)
     print('Rotation matrix (R_ {0T}) for input: ')
     print(R2. as_matrix ())
     print('Position vector (P_ {0T}) for input: ')
     print(P2)
+    return True
