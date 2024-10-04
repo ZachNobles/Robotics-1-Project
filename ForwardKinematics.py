@@ -82,6 +82,8 @@ def rotz(theta):
 
 
 def validJointAngles(q):
+    if len(q) < 5:
+        return False
     for i in range(4): # range is 180 for joints 1-4
         if q[i] < 0 or q[i] > 180:
             return False
@@ -101,7 +103,7 @@ def runFK(q):
 
     R2,P2 = fk_Dofbot(q)
     print('Rotation matrix (R_ {0T}) for input: ')
-    print(R2. as_matrix ())
+    print(np.round(R2.as_matrix(), 2))
     print('Position vector (P_ {0T}) for input: ')
-    print(P2)
+    print(np.round(P2, 2))
     return True
