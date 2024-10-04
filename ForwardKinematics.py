@@ -103,7 +103,13 @@ def runFK(q):
 
     R2,P2 = fk_Dofbot(q)
     print('Rotation matrix (R_ {0T}) for input: ')
-    print(np.round(R2.as_matrix(), 2))
+    for i, row in enumerate(np.round(R2.as_matrix(), 2)):
+        print("[" + ", ".join("{:.2f}".format(x) for x in row) + "]", end = "")
+        if i < 2:
+            print(",")
+        else:
+            print("")
+        
     print('Position vector (P_ {0T}) for input: ')
     print(np.round(P2, 2))
     return True
