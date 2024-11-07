@@ -63,12 +63,13 @@ def jacobian_inverse(robot,q0,Rd,Pd,Nmax,alpha,tol):
 # define the main function
 def main():
     #define inputs for jacobian_inverse function
-    Rd = np.array([ [-0.00, -0.00, -1.00],
-        [-1.00, 0.00, 0.00],
-        [0.00, 1.00, -0.00]])
+    Rd = np.array([ [-0.45, -0.21, -0.87],
+[-0.78, -0.37, 0.50],
+[-0.42, 0.91, -0.00]
+])
     
     #prev: [0.2058], [0.1188], [0.1464]
-    Pd = np.array([[0], [0.21], [0.19]])
+    Pd = np.array( [[0.06], [0.11], [0.29]] )
     # make sure q0 is in radians
     q0 = np.array(np.transpose([25, 50, 75, 30, 30]))*math.pi/180
     
